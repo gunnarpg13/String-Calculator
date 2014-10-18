@@ -1,7 +1,6 @@
 package is.ru.stringcalculator;
 
 public class Calculator {
-
 	public static int add(String text){
 		if(text.equals("")){
 			return 0;
@@ -21,15 +20,16 @@ public class Calculator {
 	    return numbers.split("[,\n]");
 	}
       
-    private static int sum(String[] numbers){
+    private static int sum(String[] numbers) {
+        String negatives = "";
  	    int total = 0;
         for(String number : numbers){
+            if (toInt(number) < 0) negatives = negatives.concat(number + ",");
 		    total += toInt(number);
 		}
+        if (negatives != "") {
+            throw new RuntimeException("Negatives not allowed: " + negatives.substring(0,negatives.length() - 1));
+        }
 		return total;
-    }
-
-    public static void main(String[] args) {
-        System.out.println("asdf");
     }
 }
