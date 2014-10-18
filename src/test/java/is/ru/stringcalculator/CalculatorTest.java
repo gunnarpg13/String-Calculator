@@ -35,12 +35,17 @@ public class CalculatorTest {
     }
     
     @Test
-    public void testNegatives(){
+    public void testNegatives() {
         try {
            Calculator.add("-3,5,-8,2"); 
         }
         catch (RuntimeException ex){
            assertEquals("Negatives not allowed: -3,-8",ex.getMessage());
         }
+    }
+
+    @Test
+    public void testOverThousand() {
+        assertEquals(72, Calculator.add("3000,3,2456,69"));
     }
 }

@@ -25,7 +25,7 @@ public class Calculator {
  	    int total = 0;
         for(String number : numbers){
             if (toInt(number) < 0) negatives = negatives.concat(number + ",");
-		    total += toInt(number);
+            if (toInt(number) <= 1000) total += toInt(number);
 		}
         if (negatives != "") {
             throw new RuntimeException("Negatives not allowed: " + negatives.substring(0,negatives.length() - 1));
