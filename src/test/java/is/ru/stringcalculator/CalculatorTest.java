@@ -53,4 +53,9 @@ public class CalculatorTest {
     public void testOverThousand() {
         assertEquals(72, Calculator.add("3000,3,2456,69"));
     }
+
+    @Test
+    public void testMultidelim() {
+        assertEquals(4, Calculator.add("//[$]\n3$1"));
+    }
 }

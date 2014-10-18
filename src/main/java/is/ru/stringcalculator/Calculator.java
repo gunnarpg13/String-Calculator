@@ -19,10 +19,16 @@ public class Calculator {
 	private static String[] splitNumbers(String numbers){
         if (numbers.startsWith("//"))
         {
-            int indexN = numbers.indexOf('\n');
-            String delimiter = numbers.substring(2, indexN);
-            numbers  = numbers.substring(indexN + 1, numbers.length());
-
+            String delimiter;
+            if (numbers.contains("[")) {
+                int indexN = numbers.indexOf('\n');
+                delimiter = numbers.substring(3, indexN-1);
+                numbers = numbers.substring(indexN + 1, numbers.length());
+            }else{
+                int indexN = numbers.indexOf('\n');
+                delimiter = numbers.substring(2, indexN);
+                numbers = numbers.substring(indexN + 1, numbers.length());
+            }
             return numbers.split(delimiter);
         }
 	    return numbers.split("[,\n]");
