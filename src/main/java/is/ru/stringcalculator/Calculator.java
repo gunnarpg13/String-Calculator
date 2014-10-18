@@ -5,7 +5,7 @@ public class Calculator {
 		if(text.equals("")){
 			return 0;
 		}
-		else if(text.contains(",") || text.contains("\n")){
+		else if(text.contains(",") || text.contains("\n") || text.startsWith("//")){
 			return sum(splitNumbers(text));
 		}
 		else
@@ -17,6 +17,14 @@ public class Calculator {
 	}
 
 	private static String[] splitNumbers(String numbers){
+        if (numbers.startsWith("//"))
+        {
+            int indexN = numbers.indexOf('\n');
+            String delimiter = numbers.substring(2, indexN);
+            numbers  = numbers.substring(indexN + 1, numbers.length());
+
+            return numbers.split(delimiter);
+        }
 	    return numbers.split("[,\n]");
 	}
       
@@ -28,8 +36,10 @@ public class Calculator {
             if (toInt(number) <= 1000) total += toInt(number);
 		}
         if (negatives != "") {
-            throw new RuntimeException("Negatives not allowed: " + negatives.substring(0,negatives.length() - 1));
+            throw new RuntimeException("Negatives not allowed: " + negatives.substring(0,negatives.length()-1));
         }
 		return total;
     }
+
+
 }

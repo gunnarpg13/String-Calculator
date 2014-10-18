@@ -33,6 +33,11 @@ public class CalculatorTest {
     public void testNewLine() {
         assertEquals(7, Calculator.add("1,3\n3"));
     }
+
+    @Test
+    public void testdDelimiter(){
+        assertEquals(3, Calculator.add("//;\n1;2"));
+    }
     
     @Test
     public void testNegatives() {
